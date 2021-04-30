@@ -4,19 +4,34 @@ from collections import Counter
 
 def substitution_cipher():
     # ensure correct number of arguments has been given
-    if len(sys.argv) != 2:
-        print("USAGE: python substitution.py KEY")
-    #call function to check if key is valid
-    
-    if is_valid_key(sys.argv[1]) is True:
-        substitution(sys.argv[1])
-    else:
+    if len(sys.argv) != 3:
+        print("USAGE: python encrypt/decrypt substitution.py KEY")
         return 1
+    arg1 = sys.argv[1].lower()
+    arg2 = sys.argv[2]
 
-def substitution(key):
+    # check if arguments are valid
+    if arg1 == 'encrypt' or arg1 == 'decrypt' or is_valid_key(arg2) is True:
+        substitution(arg1, arg2)
+    else:
+        return 2
+
+def substitution(code, key):
+    # store the alphabet in a variable for easy indexing, create empty cariable to hold coded message, and ask user for message
     alpha = string.ascii_lowercase
-    input("Enter message to encrypt: ").lower()
-    print(alpha)
+    encoded = ""
+
+    if code == 'encrypt'
+        message = input("Enter message to encrypt: ").lower()
+
+        # for each character in the message, find the messages index in the alphabet and store it in temp variable
+        for ch in message:
+            alpha_temp = alpha.index(ch)
+            # then create a temp variable to store the letter of the same index in the key variable and add it to the coded message
+            key_temp = key[alpha_temp]
+            encoded += key_temp
+
+        print(f"Your coded message is: {encoded}")
 
 def is_valid_key(key):
     # count if any characters in the key are repeats and create duplicate check var
