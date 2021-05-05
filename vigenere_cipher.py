@@ -1,6 +1,7 @@
 import string
+import sys
 
-vigenere_square [
+vigenere_square = [
     ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'],
     ['b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','a'],
     ['c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','a','b'],
@@ -35,8 +36,24 @@ def vigenere_cipher():
         print("USAGE: python viginere_cipher.py -(e)ncrypt/-(d)ecrypt keyword")
         return 1
     direction = sys.argv[1].lower()
-    key = sys.argv[2].lower()
+    key = list(sys.argv[2].lower())
 
-def vigenere(): 
+    message = input("Enter message: ")
+    alpha = dict(zip(string.ascii_lowercase, range(0,26)))
+
+    tmp = ""
+
+    for i in range(len(message) - len(key)):
+        key.append(key[i % len(key)])
+    key = "".join(key)
+        
+
+        
+        
+    
+
+
+    print(tmp)
+
 
 vigenere_cipher()
