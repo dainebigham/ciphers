@@ -1,28 +1,40 @@
 import string
+import sys
 
 def caeser_cipher(): 
-# infinite loop to ensure correct input
-    while True:
+    # ensure correct number of arguments has been given
+    if len(sys.argv) != 3:
+        print("USAGE: python substitution.py -(e)ncrypt/-(d)ecrypt shift")
+        return 1
+    direction = sys.argv[1].lower()
+    shift = int(sys.argv[2])
+
+    if direction == '-e' or direction == '-encode' or direction == '-d' or direction == '-decode':
+        text = input("Message to encode: ").lower()
+        caeser(text, shift, direction)
+
+    # infinite loop to ensure correct input
+    #while True:
         # decide whether you are encrypting or decrypting and convert input to lowercase
-        direction = input("\nType '(e)ncode' to encrypt, and '(d)ecode' to decrypt:\n").lower()
+    #    direction = input("\nType '(e)ncode' to encrypt, and '(d)ecode' to decrypt:\n").lower()
 
         # if input is correct
-        if direction == 'encode' or direction == 'e' or direction == 'decode' or direction == 'd':
+    #    if direction == 'encode' or direction == 'e' or direction == 'decode' or direction == 'd':
             # enter message to de/encrypt
-            text = input("Message to decode:\n").lower()
+    #        text = input("Message to decode:\n").lower()
             # infinite loop to ensure correct input type/value
-            while True:
-                try:
+    #        while True:
+    #            try:
                     # enter amount of shift for encryption
-                    shift = int(input("Enter the amount of 'shift':\n"))
-                    break
-                except (ValueError, TypeError):
-                    print("Please enter a number")
+    #                shift = int(input("Enter the amount of 'shift':\n"))
+    #                break
+    #            except (ValueError, TypeError):
+    #                print("Please enter a number")
             # call function to en/decrypt
-            caeser(text, shift, direction)
-            break
-        else:
-            print("Incorrect input. Type '(e)ncode' for encryption, or '(d)ecode' for decryption")
+    #        caeser(text, shift, direction)
+    #        break
+    #    else:
+    #        print("Incorrect input. Type '(e)ncode' for encryption, or '(d)ecode' for decryption")
 
 def caeser(text, shift, direction):
     # create a list of lowercase letters to rotate through
@@ -35,7 +47,7 @@ def caeser(text, shift, direction):
         if ch not in alpha:
             coded += ch
         # if we are encoding message
-        elif direction == 'e' or direction == 'encode':
+        elif direction == '-e' or direction == '-encode':
             # find the location of that letter in the alpha array and add amount of shift
             alpha_index = alpha.index(ch) + shift
             # if this length is greater than the array length, minus by 26 to bring index back in line with alphabet
